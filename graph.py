@@ -1,54 +1,13 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
-def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
+from graphs import sigmoid
 
-def relu(x):
-    return np.maximum(0, x)
+random_values = [-3.5, -1.2, 0, 2.8, -4.1, 1.5, -0.7, 3.2, -2.4, 4.6]
 
-def leaky_relu(x, alpha=0.01):
-    return np.where(x > 0, x, alpha * x)
+random_values_np = np.array(random_values)
 
-def tanh(x):
-    return np.tanh(x)
+sigmoid_values = sigmoid(random_values_np)
 
-x = np.linspace(-5, 5, 100)
-
-sigmoid_output = sigmoid(x)
-relu_output = relu(x)
-leaky_relu_output = leaky_relu(x)
-tanh_output = tanh(x)
-
-plt.figure(figsize=(10, 6))
-
-plt.subplot(2, 2, 1)
-plt.plot(x, sigmoid_output, label='Sigmoid')
-plt.title('Sigmoid Activation')
-plt.xlabel('Input')
-plt.ylabel('Output')
-plt.legend()
-
-plt.subplot(2, 2, 2)
-plt.plot(x, relu_output, label='ReLU')
-plt.title('ReLU Activation')
-plt.xlabel('Input')
-plt.ylabel('Output')
-plt.legend()
-
-plt.subplot(2, 2, 3)
-plt.plot(x, leaky_relu_output, label='Leaky ReLU')
-plt.title('Leaky ReLU Activation')
-plt.xlabel('Input')
-plt.ylabel('Output')
-plt.legend()
-
-plt.subplot(2, 2, 4)
-plt.plot(x, tanh_output, label='Tanh')
-plt.title('Tanh Activation')
-plt.xlabel('Input')
-plt.ylabel('Output')
-plt.legend()
-
-plt.tight_layout()
-plt.show()
+print("\nSigmoid Values:")
+for val, sig_val in zip(random_values, sigmoid_values):
+    print(f"Sigmoid({val}) = {sig_val}")
